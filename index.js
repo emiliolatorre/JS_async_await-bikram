@@ -27,10 +27,8 @@ const getImageAndName = async (pokemon) => {
         const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
         if (resp.ok) {
             const resultado = await resp.json()
-            const resultadoArray = Object.entries(resultado.sprites)
-            const imgRandom = resultadoArray[Math.floor(Math.random() * resultadoArray.length)];
-            const img = imgRandom[1]
-            const name = imgRandom[0]
+            const img = resultado.sprites.front_default;
+            const name = resultado.name
             return {img, name}
         } else {
             throw 'El estado o el stage no son correctos.'
@@ -44,14 +42,4 @@ getImageAndName('pikachu')
     .then((resp) => {console.log(resp)})
     .catch((error) => {console.error(error)})
 
-
-
-// async function getImageAndName (pokemon){
-
-//     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-//     let data = await response.json();
-//     let name = data.name;
-//     let img = data.sprites.front_default;
-//     return {name, img}
-    
-// }
+// Ejercicio 3
